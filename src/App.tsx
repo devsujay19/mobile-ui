@@ -1,66 +1,3 @@
-// // import { useState } from 'react';
-// // import reactLogo from './assets/react.svg';
-// // import viteLogo from '/vite.svg';
-// import './App.css';
-// import { useEffect, useState } from 'react';
-
-// import Boot from './components/screens/boot';
-// import GuideScreen from './components/screens/guideScreen';
-// import IslandBar from './components/islandBar';
-// import StatusBar from './components/statusBar';
-// import TimeAndDate from './components/timeAndDate';
-// import Weather from './components/weather';
-// import GoogleSearchBar from './components/googleSearchBar';
-// import HomeScreenApps from './components/homeScreenApps';
-// import ScreenSlider from './components/screenSlider';
-// import DefaultLowerApps from './components/defaultLowerApps';
-// import LowerNotchBar from './components/lowerNotchBar';
-
-// function App() {
-
-//   const [showOverlay, setShowOverlay] = useState(true);
-
-//   useEffect(() => {
-//     const timeout = setTimeout(() => {
-//       setShowOverlay(false);
-//     }, getRandomTimeout());
-
-//     return () => clearTimeout(timeout);
-//   }, []);
-
-//   function getRandomTimeout() {
-//     // Generate a random number between 1 and 5 (inclusive)
-//     const randomMinutes = Math.floor(Math.random() * 5) + 1;
-//     // Convert minutes to milliseconds
-//     return randomMinutes * 60 * 1000;
-//   }
-
-//   return (
-//     <>
-//       <div className={`overlay ${showOverlay ? 'visible' : 'hidden'}`}>
-//         <Boot />
-//         <GuideScreen />
-//       </div>
-//       <div>
-//         <IslandBar />
-//         <StatusBar />
-//         <div className='p-3'>
-//           <TimeAndDate />
-//           <Weather />
-//           <GoogleSearchBar />
-//           <HomeScreenApps />
-//           <ScreenSlider />
-//           <DefaultLowerApps />
-//         </div>
-//         <LowerNotchBar />
-//       </div>
-//     </>
-//   )
-// }
-
-// export default App;
-
-
 import './App.css';
 import { useEffect, useState } from 'react';
 import Boot from './components/screens/boot';
@@ -77,6 +14,13 @@ import LowerNotchBar from './components/lowerNotchBar';
 
 function App() {
   const [screenSize, setScreenSize] = useState(window.innerWidth <= 768 ? 'mobile' : 'desktop');
+
+  const [goFullScreen, setGoFullScreen] = useState(false);
+
+  useEffect(() => {
+    let e = document.getElementById("app-wrapper");
+    e?.requestFullscreen();
+  }, [goFullScreen]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -102,13 +46,29 @@ function App() {
 
   function getRandomTimeout() {
     // Generate a random number between 1 and 5 (inclusive)
-    const randomMinutes = Math.floor(Math.random() * 5) + 1;
+    const randomMinutes = Math.floor(Math.random() * 3) + 1;
     // Convert minutes to milliseconds
     return randomMinutes * 60 * 1000;
-  }
+  };
+
+  useEffect(() => {
+    const element = document.documentElement;
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.requestFullscreen) {
+      element.requestFullscreen();
+
+    }
+  }, []);
 
   return (
-    <div className="w-full min-h-screen">
+    <div className="w-full min-h-screen" onMouseDown={(e) => {
+      setGoFullScreen(!goFullScreen);
+    }}>
       <div className={`overlay ${showOverlay ? 'visible' : 'hidden'}`}>
         <Boot />
       </div>
