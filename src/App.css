@@ -1,0 +1,10 @@
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+body {
+  background-image: url("./assets/wallpapers/dark-liquor.png");
+  background-size: cover;
+}
