@@ -15,13 +15,6 @@ import LowerNotchBar from './components/lowerNotchBar';
 function App() {
   const [screenSize, setScreenSize] = useState(window.innerWidth <= 768 ? 'mobile' : 'desktop');
 
-  const [goFullScreen, setGoFullScreen] = useState(false);
-
-  useEffect(() => {
-    let e = document.getElementById("app-wrapper");
-    e?.requestFullscreen();
-  }, [goFullScreen]);
-
   useEffect(() => {
     const handleResize = () => {
       setScreenSize(window.innerWidth <= 768 ? 'mobile' : 'desktop');
@@ -66,9 +59,7 @@ function App() {
   }, []);
 
   return (
-    <div className="w-full min-h-screen" onMouseDown={(e) => {
-      setGoFullScreen(!goFullScreen);
-    }}>
+    <div className="w-full min-h-screen">
       <div className={`overlay ${showOverlay ? 'visible' : 'hidden'}`}>
         <Boot />
       </div>
